@@ -8,7 +8,7 @@ If number is prime print: "The number (X) is prime", if not print: "number (X) i
 	<title>php-toy-problem</title>
 </head>
 <body>
-
+<
 	<?php
 
 	function is_prime($n) {
@@ -46,24 +46,7 @@ If number is prime print: "The number (X) is prime", if not print: "number (X) i
 	is_prime(14);
 	is_prime(15);
 	?>
-<!-- 
-	<script>
-		function isPrime (n) {
-			if (n === 1) {
-				return false;
-			}
-
-			for (var i = 2; i <= n; i++) {
-				if (n % i !== 0 || n === 2) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-		}
-
-	</script> -->
+	
 </body>
 </html>
 
