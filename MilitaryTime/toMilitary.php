@@ -2,71 +2,55 @@
 <!-- Given a string that represents time in hours and minutes, convert the string to military time (if necessary)..
 -->
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>to-military-time</title>
-</head>
-<body> 
-	<?php 
-	$nan = acos(8);
+<?php include '../includes/header.php' ?>
 
-	var_dump($nan, is_nan($nan));
-	die();
+<form action="#" method="post">
+	<input type="text" name="$time" placeholder="type time">
+	<button>Get Military Time</button>
+</form>
 
-	function toMilitary ($time) {
-		$str = "";
+<?php
 
-		if( is_nan(substr($time, -2)) !== 1 ) {
-			echo $time;
+function toMilitary () {
+	$str = "";	
+	$time = $_POST['$time'];
+
+
+	if (substr($time, -2) === "am") {
+		$time = str_split($time);
+		array_splice($time, -2);
+		$time = join('', $time);
+		if (strlen($time) === 4) {
+			$time = "0" . $time;
 		}
-
-		if (substr($time, -2) === "am") {
-			$time = str_split($time);
-			array_splice($time, -2);
-			$time = join('', $time);
-
-			if (substr($time, 0, -3) === "12") {
-				$time = "00" . substr($time, -3);
-			}
-
-			if (strlen($time) === 4) {
-				$time = "0" . $time;
-			}
-		// }
-
-		// elseif (substr($time, -2) ==="pm") {
-		// 	if (substr($time, 0) === "1" && substr($time, 1) === "2") {
-		// 		$time = explode(" ", $time);
-		// 		array_splice($time, -2);
-		// 		echo join('', $time);
-		// 	}
-		// 	elseif (substr($time, -2) !=="pm" || substr($time, -2) !=="am") {
-		// 		$time = explode(" ", $time);
-		// 		array_splice($time, -2);
-		// 		$time = join('', $time);
-		// 		$str = array_slice($time, -3);
-		// 		$time = explode(" ", $time);
-		// 		array_splice($time, -2);
-		// 		$time = join('', $time);
-		// 		$time = strval((intval($time) . 12)) . $str;
-
-		// 		if (strlen($time) === 4) {
-		// 			$time = $zero . $time;
-		// 		}
-		// 	}
-		// }
-			echo $time;
+		if (substr($time, 0, -3) === "12") {
+			$time = "00" . substr($time, -3);
 		}
 	}
 
-	toMilitary("12:07am");
-	echo "<br>";
-	toMilitary("3:50am");
-	echo "<br>";
-	toMilitary("4:30");
+	elseif (substr($time, -2) ==="pm") {
+		$time = str_split($time);
+		array_splice($time, -2);
+		$time = join('', $time);	
 
-	?>
+		if (substr($time, 0, -3) !== "12") {
+			$str = substr($time, -3);
+			$time = str_split($time);	
+			array_splice($time, -2);
+			$time = join('', $time);
+			$time = str_split($time);
+			array_splice($time, -1);
+			$time = join('', $time);
+			$time = strval((intval($time) + 12)) . $str;
 
-</body>
-</html>
+		}
+	}
+	echo $time;
+}
+
+if(isset($_POST['$time'])) {
+	toMilitary();
+} 
+
+?>
+<?php include '../includes/footer.php' ?>
