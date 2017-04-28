@@ -1,16 +1,3 @@
-<?php include '../includes/header.php' ?>
-	<?php
-
-	function angrams($string){
-
-		echo "abc";
-	}
-
-	echo angrams("abc");
-	
-	?>
-<?php include '../includes/footer.php' ?>
-
 <!--  Given a single input string, write a function that outputs an array of strings with every possible
  combination of letters.
 
@@ -23,6 +10,34 @@
   example usage:
   angrams('abc');
   echo(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ] -->
+
+  <?php include '../includes/header.php' ?>
+
+  <form action="#" method="post">
+  	<input type="text" name="$string" placeholder="type word">
+  	<button>Get Military Time</button>
+  </form>
+
+  <?php
+
+  function angrams(){
+
+  	$string = $_POST['$string'];
+  	$output = array();
+
+  	for ($i = 0; $i < strlen($string); $i++) { 
+  		array_push($output, $string[$i]);
+  	}
+  	print_r ($output);
+  }
+
+  if(isset($_POST['$string'])) {
+  	angrams();
+  } 
+
+  ?>
+  <?php include '../includes/footer.php' ?>
+
 
 
 
